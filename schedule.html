@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minnal Bayern Euro Cup 2026 schedule</title>
+    <style>
+        /* Base Reset & Mobile-First Foundation */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 15px;
+            color: #2d3748;
+            background-color: #ffffff;
+            line-height: 1.4;
+            font-size: 10pt;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        .header-container {
+            border-bottom: 3px solid #741212;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 18pt;
+            color: #741212;
+            margin: 0 0 5px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .subtitle {
+            font-size: 11pt;
+            color: #9b2c2c;
+            margin: 0;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+        }
+
+        h2 {
+            font-size: 12pt;
+            color: #9b2c2c;
+            margin: 20px 0 10px 0;
+            padding-left: 8px;
+            border-left: 4px solid #9b2c2c;
+            text-transform: uppercase;
+        }
+
+        .layout-info {
+            background-color: #fff5f5;
+            border: 1px solid #feb2b2;
+            border-radius: 4px;
+            padding: 10px 12px;
+            margin-bottom: 12px;
+            font-size: 9.5pt;
+        }
+
+        .layout-info strong {
+            color: #9b2c2c;
+        }
+
+        /* Responsive Timing Container (Side-by-Side Flex on Mobile) */
+        .timing-container {
+            width: 100%;
+            margin-bottom: 20px;
+            border: 2px solid #741212;
+            border-radius: 6px;
+            overflow: hidden;
+            background-color: #ffffff;
+        }
+
+        .timing-row-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            border-bottom: 1px solid #fed7d7;
+        }
+
+        .timing-row-item:last-child {
+            border-bottom: none;
+        }
+
+        .timing-label {
+            font-weight: bold;
+            color: #741212;
+            text-transform: uppercase;
+            font-size: 9pt;
+            letter-spacing: 0.5px;
+        }
+
+        .timing-value {
+            font-size: 10pt;
+            color: #2d3748;
+            text-align: right;
+        }
+
+        .timing-value strong {
+            color: #741212;
+        }
+
+        .timing-row-header, .timing-row-data {
+            display: none;
+        }
+
+        /* Mobile Swipe Container for Matrix Tables */
+        .table-responsive-container {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+            border: 1px solid #fed7d7;
+            border-radius: 6px;
+            background: linear-gradient(to right, white 30%, rgba(255,255,255,0)), 
+                        linear-gradient(to right, rgba(255,255,255,0), white 70%) 100% 0, 
+                        radial-gradient(farthest-side at 0 50%, rgba(0,0,0,.1), rgba(0,0,0,0)), 
+                        radial-gradient(farthest-side at 100% 50%, rgba(0,0,0,.1), rgba(0,0,0,0)) 100% 0;
+            background-repeat: no-repeat;
+            background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
+            background-attachment: local, local, scroll, scroll;
+        }
+
+        .scroll-hint {
+            display: block;
+            font-size: 8pt;
+            color: #9b2c2c;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-top: -5px;
+            margin-bottom: 8px;
+            text-align: right;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9.5pt;
+            min-width: 600px;
+        }
+
+        th {
+            background-color: #741212;
+            color: #ffffff;
+            font-weight: bold;
+            text-align: left;
+            padding: 10px 8px;
+            border: 1px solid #741212;
+            text-transform: uppercase;
+            font-size: 9pt;
+        }
+
+        td {
+            padding: 10px 8px;
+            border: 1px solid #fed7d7;
+            vertical-align: top;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #fffaf0;
+        }
+
+        .time-col {
+            font-weight: bold;
+            color: #741212;
+            width: 15%;
+            white-space: nowrap;
+        }
+
+        .match-title {
+            font-weight: bold;
+            color: #2d3748;
+            display: block;
+            font-size: 9pt;
+        }
+
+        .match-teams {
+            color: #4a5568;
+            font-family: SFMono-Regular, Consolas, Monaco, monospace;
+            font-weight: bold;
+            display: block;
+            margin-top: 2px;
+            font-size: 9pt;
+        }
+
+        .note-text {
+            font-size: 8pt;
+            color: #718096;
+            font-style: italic;
+            margin-top: 2px;
+        }
+
+        .status-closed {
+            color: #9b2c2c;
+            font-weight: bold;
+            font-style: italic;
+            background-color: #fff5f5;
+        }
+
+        .status-final {
+            background-color: #f6e05e;
+            font-weight: bold;
+            border: 1px solid #ecc94b;
+        }
+
+        /* Bracket Progression Rules - Left-To-Right Swipe Layout */
+        .bracket-wrapper {
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .bracket-tree-container {
+            display: flex;
+            flex-direction: row;
+            width: auto;
+            min-width: 950px;
+            background-color: #ffffff;
+            border: 2px solid #741212;
+            border-radius: 8px;
+            padding: 15px 10px;
+            box-shadow: 0 4px 10px rgba(116,18,18,0.04);
+            align-items: center;
+        }
+
+        .bracket-mobile-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            height: 480px;
+            padding: 0 8px;
+            flex: 1;
+        }
+
+        .col-left-r16, .col-right-r16 { min-width: 130px; }
+        .col-left-qf, .col-right-qf { min-width: 145px; }
+        .col-left-sf, .col-right-sf { min-width: 135px; }
+        .col-center-f { min-width: 140px; align-items: center; justify-content: center; }
+
+        .match-block {
+            background-color: #ffffff;
+            border: 2px solid #9b2c2c;
+            border-radius: 6px;
+            padding: 10px 6px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            width: 100%;
+        }
+
+        .col-left-r16 .match-block, .col-right-r16 .match-block { height: 75px; }
+        .col-left-qf .match-block, .col-right-qf .match-block { height: 80px; }
+        .col-left-sf .match-block, .col-right-sf .match-block { height: 85px; }
+        .col-center-f .match-block { height: 100px; background-color: #fffbeb; border: 2px solid #d69e2e; }
+
+        .match-block interstate {
+            display: block;
+            color: #741212;
+            font-size: 8pt;
+            text-transform: uppercase;
+            margin-bottom: 3px;
+            border-bottom: 1px solid #fff5f5;
+            padding-bottom: 2px;
+            font-weight: bold;
+        }
+
+        .match-block span {
+            font-weight: 700;
+            font-size: 9.5pt;
+            color: #2d3748;
+        }
+
+        .match-block.final-center-box span {
+            color: #b7791f;
+        }
+
+        .bracket-wing-title, .bracket-connection-arrow {
+            display: none !important;
+        }
+
+        .desktop-only-header {
+            display: grid;
+            grid-template-columns: repeat(7, minmax(130px, 1fr));
+            min-width: 950px;
+            text-align: center;
+            background-color: #741212;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 8.5pt;
+            text-transform: uppercase;
+            padding: 8px 10px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            border: 2px solid #741212;
+            border-bottom: none;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        ul {
+            margin: 5px 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* Unified Navigation Action Button Layout Rules */
+        .bottom-nav {
+            margin: 30px auto 15px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .btn-home, .btn-control {
+            display: block;
+            width: 100%;
+            background-color: #ffffff;
+            color: #741212;
+            border: 2px solid #741212;
+            border-radius: 6px;
+            padding: 14px 20px;
+            font-size: 11pt;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(116, 18, 18, 0.08);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .btn-home:hover, .btn-home:active,
+        .btn-control:hover, .btn-control:active {
+            background-color: #741212;
+            color: #ffffff;
+        }
+
+        /* Scaling Media Queries for Tablets & Desktop Monitors */
+        @media screen and (min-width: 992px) {
+            body {
+                padding: 30px;
+            }
+
+            h1 {
+                font-size: 24pt;
+            }
+
+            .subtitle {
+                font-size: 13pt;
+            }
+
+            h2 {
+                font-size: 14pt;
+            }
+
+            .scroll-hint {
+                display: none;
+            }
+
+            table {
+                min-width: 100%;
+            }
+
+            .timing-container {
+                display: table;
+                width: 100%;
+                table-layout: fixed;
+            }
+
+            .timing-row-header {
+                display: table-row;
+                background-color: #741212;
+            }
+
+            .timing-row-data {
+                display: table-row;
+            }
+
+            .timing-hdr-cell {
+                display: table-cell;
+                color: #ffffff;
+                font-weight: bold;
+                padding: 10px;
+                text-align: center;
+                font-size: 9pt;
+                text-transform: uppercase;
+                border-right: 1px solid #9b2c2c;
+                width: 25%;
+            }
+
+            .timing-hdr-cell:last-child {
+                border-right: none;
+            }
+
+            .timing-data-cell {
+                display: table-cell;
+                padding: 15px 10px;
+                text-align: center;
+                border-right: 1px solid #fed7d7;
+                background-color: #fff5f5;
+                width: 25%;
+                font-size: 9.5pt;
+            }
+
+            .timing-data-cell:last-child {
+                border-right: none;
+            }
+
+            .timing-data-cell strong {
+                display: block;
+                font-size: 11pt;
+                margin-bottom: 3px;
+            }
+
+            .timing-row-item {
+                display: none;
+            }
+
+            .bracket-tree-container, .desktop-only-header {
+                min-width: 100%;
+            }
+            
+            .desktop-only-header {
+                grid-template-columns: repeat(7, minmax(115px, 1fr));
+            }
+
+            .bracket-tree-container {
+                grid-template-columns: repeat(7, minmax(115px, 1fr));
+                padding: 25px 10px;
+            }
+
+            .bottom-nav {
+                flex-direction: row;
+                justify-content: center;
+                gap: 15px;
+                max-width: 100%;
+                margin: 40px auto 20px auto;
+            }
+
+            .btn-home, .btn-control {
+                display: inline-block;
+                width: auto;
+                padding: 12px 35px;
+                font-size: 10.5pt;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <h1>Minnal Bayern Euro Cup</h1>
+        <div class="subtitle">Official Tournament Schedule</div>
+    </div>
+    <div class="bottom-nav">
+        <a href="index.html" class="btn-home">← Home Dashboard</a>
+        <a href="groups.html" class="btn-control">View Table standings →</a>
+    </div>
+    <h2>Match Structure and Timing Breakdown</h2>
+    
+    <!-- Group Stage Block -->
+    <div class="layout-info" style="margin-bottom: 6px;">
+        <strong>Group Stage Matches</strong>
+    </div>
+    <div class="timing-container">
+        <div class="timing-row-header">
+            <div class="timing-hdr-cell">First Half</div>
+            <div class="timing-hdr-cell">Mid-Match Interval</div>
+            <div class="timing-hdr-cell">Second Half</div>
+            <div class="timing-hdr-cell">Next Match In</div>
+        </div>
+        <div class="timing-row-data">
+            <div class="timing-data-cell"><strong>10 Mins</strong> (00:00 - 10:00)</div>
+            <div class="timing-data-cell"><strong>2 Mins</strong> (10:00 - 12:00)</div>
+            <div class="timing-data-cell"><strong>10 Mins</strong> (12:00 - 22:00)</div>
+            <div class="timing-data-cell" style="background-color: #fffaf0;"><strong>5 Mins</strong></div>
+        </div>
+
+        <div class="timing-row-item">
+            <span class="timing-label">First Half</span>
+            <span class="timing-value"><strong>10 Mins</strong> (00:00 - 10:00)</span>
+        </div>
+        <div class="timing-row-item">
+            <span class="timing-label">Mid-Match Interval</span>
+            <span class="timing-value"><strong>2 Mins</strong> (10:00 - 12:00)</span>
+        </div>
+        <div class="timing-row-item">
+            <span class="timing-label">Second Half</span>
+            <span class="timing-value"><strong>10 Mins</strong> (12:00 - 22:00)</span>
+        </div>
+        <div class="timing-row-item" style="background-color: #fffaf0;">
+            <span class="timing-label">Next Match In</span>
+            <span class="timing-value"><strong style="color: #e53e3e;">5 Mins</strong></span>
+        </div>
+    </div>
+
+    <!-- Knockout Block -->
+    <div class="layout-info" style="margin-bottom: 6px;">
+        <strong>Knockout Bracket Matches</strong>
+    </div>
+    <div class="timing-container">
+        <div class="timing-row-header">
+            <div class="timing-hdr-cell">First Half</div>
+            <div class="timing-hdr-cell">Mid-Match Interval</div>
+            <div class="timing-hdr-cell">Second Half</div>
+            <div class="timing-hdr-cell">Next Match In</div>
+        </div>
+        <div class="timing-row-data">
+            <div class="timing-data-cell"><strong>10 Mins</strong> (00:00 - 10:00)</div>
+            <div class="timing-data-cell"><strong>2 Mins</strong> (10:00 - 12:00)</div>
+            <div class="timing-data-cell"><strong>10 Mins</strong> (12:00 - 22:00)</div>
+            <div class="timing-data-cell"><strong>5 Mins</strong></div>
+        </div>
+
+        <div class="timing-row-item">
+            <span class="timing-label">First Half</span>
+            <span class="timing-value"><strong>10 Mins</strong> (00:00 - 10:00)</span>
+        </div>
+        <div class="timing-row-item">
+            <span class="timing-label">Mid-Match Interval</span>
+            <span class="timing-value"><strong>2 Mins</strong> (10:00 - 12:00)</span>
+        </div>
+        <div class="timing-row-item">
+            <span class="timing-label">Second Half</span>
+            <span class="timing-value"><strong>10 Mins</strong> (12:00 - 22:00)</span>
+        </div>
+        <div class="timing-row-item">
+            <span class="timing-label">Next Match In</span>
+            <span class="timing-value"><strong>5 Mins</strong> (Buffer & Setup)</span>
+        </div>
+    </div>
+
+    <!-- Quarter Finals Block -->
+    <div class="layout-info" style="margin-bottom: 6px;">
+        <strong>Quarter-Final Matches</strong>
+    </div>
+    <div class="timing-container">
+        <div class="timing-row-header">
+            <div class="timing-hdr-cell">First Half</div>
+            <div class="timing-hdr-cell">Mid-Match Interval</div>
+            <div class="timing-hdr-cell">Second Half</div>
+            <div class="timing-hdr-cell">Next Match In</div>
+        </div>
+        <div class="timing-row-data">
+            <div class="timing-data-cell"><strong>10 Mins</strong> (00:00 - 10:00)</div>
+            <div class="timing-data-cell"><strong>2 Mins</strong> (10:00 - 12:00)</div>
+            <div class="timing-data-cell"><strong>10 Mins</strong> (12:00 - 22:00)</div>
+            <div class="timing-data-cell"><strong>30 Mins</strong></div>
+        </div>
+
+        <div class="timing-row-item">
+            <span class="timing-label">First Half</span>
+            <span class="timing-value"><strong>10 Mins</strong> (00:00 - 10:00)</span>
+        </div>
+        <div class="timing-row-item">
+            <span class="timing-label">Mid-Match Interval</span>
+            <span class="timing-value"><strong>2 Mins</strong> (10:00 - 12:00)</span>
+        </div>
+        <div class="timing-row-item">
+            <span class="timing-label">Second Half</span>
+            <span class="timing-value"><strong>10 Mins</strong> (12:00 - 22:00)</span>
+        </div>
+        <div class="timing-row-item">
+            <span class="timing-label">Next Match In</span>
+            <span class="timing-value"><strong>30 Mins</strong> (Buffer & Setup)</span>
+        </div>
+    </div>
+
+    <!-- Semi Finals Block -->
+    <div class="layout-info" style="margin-bottom: 6px;">
+        <strong>Semi-Final Matches</strong>
+    </div>
+    <div class="timing-container">
+        <div class="timing-row-header">
+            <div class="timing-hdr-cell">First Half</div>
+            <div class="timing-hdr-cell">Mid-Match Interval</div>
+            <div class="timing-hdr-cell">Second Half</div>
+            <div class="timing-hdr-cell">Next Match In</div>
+        </div>
+        <div class="timing-row-data">
+            <div class="timing-data-cell"><strong>12 Mins</strong> (00:00 - 12:00)</div>
+            <div class="timing-data-cell"><strong>5 Mins</strong> (12:00 - 17:00)</div>
+            <div class="timing-data-cell"><strong>12 Mins</strong> (17:00 - 29:00)</div>
+            <div class="timing-data-cell"><strong>30 Mins</strong></div>
+        </div>
+
+        <div class="timing-row-item">
+            <span class="timing-label">First Half</span>
+            <span class="timing-value"><strong>12 Mins</strong> (00:00 - 12:00)</span>
+        </div>
+        <div class="timing-row-item">
+            <span class="timing-label">Mid-Match Interval</span>
+            <span class="timing-value"><strong>5 Mins</strong> (12:00 - 17:00)</span>
+        </div>
+        <div class="timing-row-item">
+            <span class="timing-label">Second Half</span>
+            <span class="timing-value"><strong>12 Mins</strong> (17:00 - 29:00)</span>
+        </div>
+        <div class="timing-row-item">
+            <span class="timing-label">Next Match In</span>
+            <span class="timing-value"><strong>30 Mins</strong> (Buffer & Setup)</span>
+        </div>
+    </div>
+
+
+    <!-- Finals Block -->
+    <div class="layout-info" style="margin-bottom: 6px;">
+        <strong>Finals Matches</strong>
+    </div>
+    <div class="timing-container">
+        <div class="timing-row-header">
+            <div class="timing-hdr-cell">First Half</div>
+            <div class="timing-hdr-cell">Mid-Match Interval</div>
+            <div class="timing-hdr-cell">Second Half</div>
+        </div>
+        <div class="timing-row-data">
+            <div class="timing-data-cell"><strong>20 Mins</strong> (00:00 - 20:00)</div>
+            <div class="timing-data-cell"><strong>10 Mins</strong> (20:00 - 30:00)</div>
+            <div class="timing-data-cell"><strong>20 Mins</strong> (30:00 - 50:00)</div>
+        </div>
+
+        <div class="timing-row-item">
+            <span class="timing-label">First Half</span>
+            <span class="timing-value"><strong>20 Mins</strong> (00:00 - 20:00)</span>
+        </div>
+        <div class="timing-row-item">
+            <span class="timing-label">Mid-Match Interval</span>
+            <span class="timing-value"><strong>10 Mins</strong> (20:00 - 30:00)</span>
+        </div>
+        <div class="timing-row-item">
+            <span class="timing-label">Second Half</span>
+            <span class="timing-value"><strong>20 Mins</strong> (30:00 - 50:00)</span>
+        </div>
+    </div>
+
+    <!-- Phase 1 Timeline Matrix -->
+    <h2>Phase 1: Group Stage Matrix </h2>
+    <div class="layout-info">
+        <strong>Pitch Layout:</strong> Ground 1: Groups A & E  | Ground 2: Groups B & F  | Ground 3: Groups C & G  | Ground 4: Groups D & H
+    </div>
+
+    <span class="scroll-hint">Swipe table to view all grounds ↔</span>
+    <div class="table-responsive-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Timeline</th>
+                    <th>Ground 1 (A & E)</th>
+                    <th>Ground 2 (B & F)</th>
+                    <th>Ground 3 (C & G)</th>
+                    <th>Ground 4 (D & H)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="time-col">08:30 AM<br><span style="font-size:7.5pt; color:#718096; font-weight:normal;">Ends 08:53</span></td>
+                    <td><span class="match-title">GROUP A MATCH 1</span><span class="match-teams">A1 vs A2</span></td>
+                    <td><span class="match-title">GROUP B MATCH 1</span><span class="match-teams">B1 vs B2</span></td>
+                    <td><span class="match-title">GROUP C MATCH 1</span><span class="match-teams">C1 vs C2</span></td>
+                    <td><span class="match-title">GROUP D MATCH 1</span><span class="match-teams">D1 vs D2</span></td>
+                </tr>
+                <tr>
+                    <td class="time-col">08:58 AM<br><span style="font-size:7.5pt; color:#718096; font-weight:normal;">Ends 09:21</span></td>
+                    <td><span class="match-title">GROUP E MATCH 1</span><span class="match-teams">E1 vs E2</span></td>
+                    <td><span class="match-title">GROUP F MATCH 1</span><span class="match-teams">F1 vs F2</span></td>
+                    <td><span class="match-title">GROUP G MATCH 1</span><span class="match-teams">G1 vs G2</span></td>
+                    <td><span class="match-title">GROUP H MATCH 1</span><span class="match-teams">H1 vs H2</span></td>
+                </tr>
+                <tr>
+                    <td class="time-col">09:26 AM<br><span style="font-size:7.5pt; color:#718096; font-weight:normal;">Ends 09:49</span></td>
+                    <td><span class="match-title">GROUP A MATCH 2</span><span class="match-teams">A1 vs A3</span></td>
+                    <td><span class="match-title">GROUP B MATCH 2</span><span class="match-teams">B1 vs B3</span></td>
+                    <td><span class="match-title">GROUP C MATCH 2</span><span class="match-teams">C1 vs C3</span></td>
+                    <td><span class="match-title">GROUP D MATCH 2</span><span class="match-teams">D1 vs D3</span></td>
+                </tr>
+                <tr>
+                    <td class="time-col">09:54 AM<br><span style="font-size:7.5pt; color:#718096; font-weight:normal;">Ends 10:17</span></td>
+                    <td><span class="match-title">GROUP E MATCH 2</span><span class="match-teams">E1 vs E3</span></td>
+                    <td><span class="match-title">GROUP F MATCH 2</span><span class="match-teams">F1 vs F3</span><div class="note-text">B Match 3: B2 vs B3 (Cont)</div></td>
+                    <td><span class="match-title">GROUP G MATCH 2</span><span class="match-teams">G1 vs G3</span></td>
+                    <td><span class="match-title">GROUP H MATCH 2</span><span class="match-teams">H1 vs H3</span></td>
+                </tr>
+                <tr>
+                    <td class="time-col">10:22 AM<br><span style="font-size:7.5pt; color:#718096; font-weight:normal;">Ends 10:45</span></td>
+                    <td><span class="match-title">GROUP A MATCH 3</span><span class="match-teams">A2 vs A3</span></td>
+                    <td><span class="match-title">GROUP B MATCH 3</span><span class="match-teams">B2 vs B3</span></td>
+                    <td><span class="match-title">GROUP C MATCH 3</span><span class="match-teams">C2 vs C3</span></td>
+                    <td><span class="match-title">GROUP D MATCH 3</span><span class="match-teams">D2 vs D3</span></td>
+                </tr>
+                <tr>
+                    <td class="time-col">10:50 AM<br><span style="font-size:7.5pt; color:#718096; font-weight:normal;">Ends 11:13</span></td>
+                    <td><span class="match-title">GROUP E MATCH 3</span><span class="match-teams">E2 vs E3</span></td>
+                    <td><span class="match-title">GROUP F MATCH 3</span><span class="match-teams">F2 vs F3</span></td>
+                    <td><span class="match-title">GROUP G MATCH 3</span><span class="match-teams">G2 vs G3</span></td>
+                    <td><span class="match-title">GROUP H MATCH 3</span><span class="match-teams">H2 vs H3</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Phase 2 Knockouts Matrix Table -->
+    <h2>Phase 2: High-Stakes Knockout Phases</h2>
+    
+    <span class="scroll-hint">Swipe table to view all grounds ↔</span>
+    <div class="table-responsive-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Timeline</th>
+                    <th>Ground 1</th>
+                    <th>Ground 2</th>
+                    <th>Ground 3</th>
+                    <th>Ground 4</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="time-col">11:30 PM<br><span style="font-size:7.5pt; color:#718096; font-weight:normal;">Ends 11:53</span></td>
+                    <td><span class="match-title">ROUND OF 16 - M1</span><span class="match-teams">A1 vs B2</span></td>
+                    <td><span class="match-title">ROUND OF 16 - M2</span><span class="match-teams">C1 vs D2</span></td>
+                    <td><span class="match-title">ROUND OF 16 - M3</span><span class="match-teams">E1 vs F2</span></td>
+                    <td><span class="match-title">ROUND OF 16 - M4</span><span class="match-teams">G1 vs H2</span></td>
+                </tr>
+                <tr>
+                    <td class="time-col">12:15 PM<br><span style="font-size:7.5pt; color:#718096; font-weight:normal;">Ends 12:38</span></td>
+                    <td><span class="match-title">ROUND OF 16 - M5</span><span class="match-teams">B1 vs A2</span></td>
+                    <td><span class="match-title">ROUND OF 16 - M6</span><span class="match-teams">D1 vs C2</span></td>
+                    <td><span class="match-title">ROUND OF 16 - M7</span><span class="match-teams">F1 vs E2</span></td>
+                    <td><span class="match-title">ROUND OF 16 - M8</span><span class="match-teams">H1 vs G2</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- Phase 3 Quarter-Final Matrix Table -->
+    <h2>Phase 3: Quarter-Final Matches</h2>
+    
+    <span class="scroll-hint">Swipe table to view all grounds ↔</span>
+    <div class="table-responsive-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Timeline</th>
+                    <th>Ground 1</th>
+                    <th>Ground 2</th>
+                    <th>Ground 3</th>
+                    <th>Ground 4</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="time-col">02:15 PM<br><span style="font-size:7.5pt; color:#718096; font-weight:normal;">Ends 02:40</span></td>
+                    <td><span class="match-title">Match QF1 Winner</span><span class="match-teams">PQ1 vs PQ3</span></td>
+                    <td><span class="match-title">Match QF2 Winner</span><span class="match-teams">PQ2 vs PQ4</span></td>
+                    <td><span class="match-title">Match QF3 Winner</span><span class="match-teams">PQ5 vs PQ6</span></td>
+                    <td><span class="match-title">Match QF4 Winner</span><span class="match-teams">PQ7 vs PQ8</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Phase 3 Semi-Final Matrix Table -->
+    <h2>Phase 3: Semi-Final Matches</h2>
+    
+    <span class="scroll-hint">Swipe table to view all grounds ↔</span>
+    <div class="table-responsive-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Timeline</th>
+                    <th>Ground 1</th>
+                    <th>Ground 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="time-col">03:15 PM<br><span style="font-size:7.5pt; color:#718096; font-weight:normal;">Ends 03:50</span></td>
+                    <td><span class="match-title">Semi-Final 1 Winner QF1 vs QF3</span><span class="match-teams">QF1 vs QF3</span></td>
+                    <td><span class="match-title">Semi-Final 2 Winner QF2 vs QF4</span><span class="match-teams">QF2 vs QF4</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Phase 3 Final Matrix Table -->
+    <h2>Phase 3: Final Matches</h2>
+    
+    <span class="scroll-hint">Swipe table to view all grounds ↔</span>
+    <div class="table-responsive-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Timeline</th>
+                    <th>Ground 1</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="time-col">04:15 PM<br><span style="font-size:7.5pt; color:#718096; font-weight:normal;">Ends 05:20</span></td>
+                    <td><span class="match-title">Grand Final Winner SF1 vsWinner SF2</span><span class="match-teams">A1 vs B2</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- HORIZONTAL LEFT-TO-RIGHT BRACKET TREE WIDGET -->
+    <h2>Knockout Stage Progression</h2>
+    <p style="font-size: 9.5pt; color: #4a5568; margin-bottom: 10px;">
+        Swipe horizontally to track team progress from left-to-right through the tournament branches.
+    </p>
+
+    <span class="scroll-hint">Swipe bracket left-to-right ↔</span>
+    <div class="table-responsive-container" style="border:none;">
+        
+        <div class="desktop-only-header">
+            <div>Round of 16</div>
+            <div>Quarter Finals</div>
+            <div>Semi Finals</div>
+            <div>Championship Final</div>
+            <div>Semi Finals</div>
+            <div>Quarter Finals</div>
+            <div>Round of 16</div>
+        </div>
+
+        <div class="bracket-tree-container">
+            <!-- LEFT WING WIDGETS -->
+            <div class="col-left-r16 bracket-mobile-section">
+                <div class="match-block"><interstate>Match PQ1 (12:15 PM)</interstate><span>A1 vs B2</span></div>
+                <div class="match-block"><interstate>Match PQ3 (12:15 PM)</interstate><span>C1 vs D2</span></div>
+                <div class="match-block"><interstate>Match PQ5 (12:15 PM)</interstate><span>E1 vs F2</span></div>
+                <div class="match-block"><interstate>Match PQ7 (12:15 PM)</interstate><span>G1 vs H2</span></div>
+            </div>
+
+            <div class="col-left-qf bracket-mobile-section">
+                <div class="match-block"><interstate>Match QF1 (02:15 PM)</interstate><span>Winner PQ1 vs PQ3</span></div>
+                <div class="match-block"><interstate>Match QF3 (02:15 PM)</interstate><span>Winner PQ5 vs PQ7</span></div>
+            </div>
+
+            <div class="col-left-sf bracket-mobile-section">
+                <div class="match-block"><interstate>Semi-Final 1 (03:15 PM)</interstate><span>Winner QF1 vs QF3</span></div>
+            </div>
+
+            <!-- APEX CENTRAL GRAND CHAMPIONSHIP SLOT -->
+            <div class="col-center-f bracket-mobile-section">
+                <div class="match-block final-center-box">
+                    <interstate>Grand Final (04:15 PM)</interstate>
+                    <span>Winner SF1<br>vs<br>Winner SF2</span>
+                </div>
+            </div>
+
+            <!-- RIGHT WING WIDGETS -->
+            <div class="col-right-sf bracket-mobile-section">
+                <div class="match-block"><interstate>Semi-Final 2 (03:15 PM)</interstate><span>Winner QF2 vs QF4</span></div>
+            </div>
+
+            <div class="col-right-qf bracket-mobile-section">
+                <div class="match-block"><interstate>Match QF2 (02:15 PM)</interstate><span>Winner PQ2 vs PQ4</span></div>
+                <div class="match-block"><interstate>Match QF4 (02:15 PM)</interstate><span>Winner PQ6 vs PQ8</span></div>
+            </div>
+
+            <div class="col-right-r16 bracket-mobile-section">
+                <div class="match-block"><interstate>Match PQ2 (12:15 PM)</interstate><span>B1 vs A2</span></div>
+                <div class="match-block"><interstate>Match PQ4 (12:15 PM)</interstate><span>D1 vs C2</span></div>
+                <div class="match-block"><interstate>Match PQ6 (12:15 PM)</interstate><span>F1 vs E2</span></div>
+                <div class="match-block"><interstate>Match PQ8 (12:15 PM)</interstate><span>H1 vs G2</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Home anchor -->
+    <div class="bottom-nav">
+        <a href="index.html" class="btn-home">← Home Dashboard</a>
+        <a href="groups.html" class="btn-control">View Table standings →</a>
+    </div>
+
+</body>
+</html>

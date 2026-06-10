@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minnal Bayern Euro Cup - Standings Hub</title>
+    <style>
+        /* Base Reset & Mobile-First Foundation */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 15px;
+            color: #2d3748;
+            background-color: #f7fafc;
+            line-height: 1.4;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        .header-container {
+            border-bottom: 3px solid #741212;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 18pt;
+            color: #741212;
+            margin: 0 0 5px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .subtitle {
+            font-size: 11pt;
+            color: #9b2c2c;
+            margin: 0;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+        }
+
+        /* 4x2 Grid Framework - Auto-stacks on Mobile */
+        .groups-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .group-container {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        .group-title {
+            font-size: 13pt;
+            color: #e53e3e;
+            font-weight: bold;
+            margin: 0 0 4px 0;
+        }
+
+        .section-label {
+            font-size: 11pt;
+            color: #718096;
+            margin: 0 0 12px 0;
+            font-weight: 500;
+        }
+
+        /* Standings Matrix Table Custom Styling */
+        .standings-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9.5pt;
+        }
+
+        .standings-table th {
+            color: #718096;
+            font-weight: 500;
+            text-align: center;
+            padding: 6px 4px;
+            font-size: 9pt;
+            border-bottom: 1px solid #edf2f7;
+        }
+
+        .standings-table th.team-th {
+            text-align: left;
+        }
+
+        .standings-table td {
+            padding: 10px 4px;
+            vertical-align: middle;
+            border-bottom: 1px solid #edf2f7;
+            text-align: center;
+        }
+
+        .standings-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Matches the shaded stats column from the screenshot */
+        .standings-table th.stat-highlight,
+        .standings-table td.stat-highlight {
+            background-color: #f7fafc;
+            font-weight: 600;
+        }
+
+        .rank-col {
+            font-weight: bold;
+            color: #e53e3e;
+            width: 25px;
+        }
+
+        .team-col-cell {
+            display: flex;
+            align-items: center;
+            text-align: left;
+        }
+
+        /* Circular styled team placeholders mimicking logo badges */
+        .team-logo-placeholder {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background-color: #fff5f5;
+            border: 1px dashed #feb2b2;
+            color: #741212;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 7.5pt;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .team-name {
+            font-weight: 600;
+            color: #2d3748;
+            letter-spacing: 0.2px;
+            text-transform: uppercase;
+            font-size: 9pt;
+        }
+
+        .points-indicator {
+            font-size: 8pt;
+            color: #a0aec0;
+            margin-left: auto;
+            padding-right: 5px;
+        }
+
+        .points-indicator::after {
+            content: " ●";
+            color: #cbd5e0;
+            font-size: 9pt;
+        }
+
+        /* Nav Control Elements Layout */
+        .nav-container {
+            margin: 30px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .btn-control {
+            display: block;
+            text-align: center;
+            background-color: #ffffff;
+            color: #741212;
+            border: 2px solid #741212;
+            border-radius: 6px;
+            padding: 14px;
+            font-size: 11pt;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 4px rgba(116, 18, 18, 0.08);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .btn-control:hover, .btn-control:active {
+            background-color: #741212;
+            color: #ffffff;
+        }
+
+        /* Large Monitor Desktop Adaptations: Forces strict 4-wide matrix panels */
+        @media screen and (min-width: 992px) {
+            body {
+                padding: 30px;
+            }
+
+            h1 {
+                font-size: 24pt;
+            }
+
+            .groups-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 25px;
+            }
+
+            .nav-container {
+                flex-direction: row;
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .btn-control {
+                display: inline-block;
+                width: auto;
+                padding: 12px 45px;
+                font-size: 10.5pt;
+            }
+
+        }
+        /* ADD THE NEW MOBILE OVERRIDE HERE */
+        @media screen and (max-width: 991px) {
+            .btn-control {
+                padding: 10px;
+                font-size: 9pt;
+            }
+            .nav-container {
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <h1>Minnal Bayern Euro Cup</h1>
+        <div class="subtitle">Official Group Standings Hub</div>
+    </div>
+    
+    <div class="nav-container">
+    <a href="index.html" class="btn-control">Home Dashboard</a>
+    <a href="schedule.html" class="btn-control">Go to Schedule</a>
+    </div>
+
+    <!-- MAIN GRID CONTAINER FOR ALL 8 GROUPS -->
+    <div class="groups-grid">
+    
+
+        <!-- ==================== GROUP A ==================== -->
+        <div class="group-container">
+            <h3 class="group-title">Group A</h3>
+            <div class="section-label">Standings</div>
+            <table class="standings-table">
+                <thead>
+                    <tr>
+                        <th style="width: 5%"></th>
+                        <th class="team-th" style="width: 55%">Team</th>
+                        <th class="stat-highlight" style="width: 10%">P</th>
+                        <th style="width: 10%">M</th>
+                        <th style="width: 10%">W</th>
+                        <th style="width: 10%">D</th>
+                        <th style="width: 10%">L</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="rank-col">1</td>
+                        <td><div class="team-col-cell"><div class="team-logo-placeholder">A1</div><span class="team-name">Team A1</span><span class="points-indicator">0</span></div></td>
+                        <td class="stat-highlight">0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+                    </tr>
+                    <tr>
+                        <td class="rank-col">2</td>
+                        <td><div class="team-col-cell"><div class="team-logo-placeholder">A2</div><span class="team-name">Team A2</span><span class="points-indicator">0</span></div></td>
+                        <td class="stat-highlight">0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+                    </tr>
+                    <tr>
+                        <td class="rank-col">3</td>
+                        <td><div class="team-col-cell"><div class="team-logo-placeholder">A3</div><span class="team-name">Team A3</span><span class="points-indicator">0</span></div></td>
+                        <td class="stat-highlight">0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+                    </tr>
+                    <tr>
+                        <td class="rank-col">4</td>
+                        <td><div class="team-col-cell"><div class="team-logo-placeholder">A4</div><span class="team-name">Team A4</span><span class="points-indicator">0</span></div></td>
+                        <td class="stat-highlight">0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ==================== GROUP B ==================== -->
+        <div class="group-container">
+            <h3 class="group-title">Group B</h3>
+            <div class="section-label">Standings</div>
+            <table class="standings-table">
+                <thead>
+                    <tr>
+                        <th></th><th class="team-th">Team</th><th class="stat-highlight">P</th><th>M</th><th>W</th><th>D</th><th>L</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="rank-col">1</td><td><div class="team-col-cell"><div class="team-logo-placeholder">B1</div><span class="team-name">Team B1</span><span class="points-indicator">0</span></div></td><td class="stat-highlight">0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td class="rank-col">2</td><td><div class="team-col-cell"><div class="team-logo-placeholder">B2</div><span class="team-name">Team B2</span><span class="points-indicator">0</span></div></td><td class="stat-highlight">0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td class="rank-col">3</td><td><div class="team-col-cell"><div class="team-logo-placeholder">B3</div><span class="team-name">Team B3</span><span class="points-indicator">0</span></div></td><td class="stat-highlight">0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td class="rank-col">4</td><td><div class="team-col-cell"><div class="team-logo-placeholder">B4</div><span class="team-name">Team B4</span><span class="points-indicator">0</span></div></td><td class="stat-highlight">0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ==================== GROUP C ==================== -->
+        <div class="group-container">
+            <h3 class="group-title">Group C</h3>
+            <div class="section-label">Standings</div>
+            <table class="standings-table">
+                <thead>
+                    <tr>
+                        <th></th><th class="team-th">Team</th><th class="stat-highlight">P</th><th>M</th><th>W</th><th>D</th><th>L</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="rank-col">1</td><td><div class="team-col-cell"><div class="team-logo-placeholder">C1</div><span class="team-name">Team C1</span><span class="points-indicator">0</span></div></td><td class="stat-highlight">0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td class="rank-col">2</td><td><div class="team-col-cell"><div class="team-logo-placeholder">C2</div><span class="team-name">Team C2</span><span class="points-indicator">0</span></div></td><td class="stat-highlight">0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td class="rank-col">3</td><td><div class="team-col-cell"><div class="team-logo-placeholder">C3</div><span class="team-name">Team C3</span><span class="points-indicator">0</span></div></td><td class="stat-highlight">0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td class="rank-col">4</td><td><div class="team-col-cell"><div class="team-logo-placeholder">C4</div><span class="team-name">Team C4</span><span class="points-indicator">0</span></div></td><td class="stat-highlight">0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ==================== GROUP D ==================== -->
+        <div class="group-container">
+            <h3 class="group-title">Group D</h3>
+            <div class="section-label">Standings</div>
+            <table class="standings-table">
+                <thead>
+                    <tr>
+                        <th></th><th class="team-th">Team</th><th class="stat-highlight">P</th><th>M</th><th>W</th><th>D</th><th>L</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="rank-col">1</td><td><div class="team-col-cell"><div class="team-logo-placeholder">D1</div><span class="team-name">Team D1</span><span class="points-indicator">0</span></div></td><td class="stat-highlight">0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td class="rank-col">2</td><td><div class="team-col-cell"><div class="team-logo-placeholder">D2</div><span class="team-name">Team D2</span><span class="points-indicator">0</span></div></td><td class="stat-highlight">0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td class="rank-col">3</td><td><div class="team-col-cell"><div class="team-logo-placeholder">D3</div><span class="team-name">Team D3</span><span class="points-indicator">0</span></div></td><td class="stat-highlight">0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td class="rank-col">4</td><td><div class="team-col-cell"><div class="team-logo-placeholder">D4</div><span class="team-name">Team D4</span><span class="points-indicator">0</span></div></td><td class="stat-highlight">0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ==================== GROUP E ==================== -->
+        <div class="group-container">
+            <h3 class="group-title">Group E</h3>
+            <div class="section-label">Standings</div>
+            <table class="standings-table">
+                <thead>
+                    <tr>
+                        <th></th><th class="team-th">Team</th><th class="stat-highlight">P</th><th>M</th><th>W</th><th>D</th><th>L</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="rank-col">1</td><td><div class="team-col-cell"><div class="team-logo-placeholder">E1</div><span class="team-name">Team E1</span><span class="points-indicator">0</span></div></td><td class="stat-highlight">0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td class="rank-col">2</td><td><div class="team-col-cell"><div class="team-logo-placeholder">E2</div><span class="team-name">Team E2</span><span class="points-indicator">0</span></div></td><td class="stat-highlight">0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td class="rank-col">3</td><td><div class="team-col-cell"><div class="team-logo-placeholder">E3</div><span class="team-name">Team E3</span><span class="points-indicator">0</span></div></td><td class="stat-highlight">0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td class="rank-col">4</td><td><div class="team-col-cell"><div class="team-logo-placeholder">E4</div><span class="team-name">Team E4</span><span class="points-indicator">0</span></div></td><td class="stat-highlight">0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ==================== GROUP F ==================== -->
+        <div class="group-container">
+            <h3 class="group-title">Group F</h3>
+            <div class="section-label">Standings</div>
+            <table class="standings-table">
+                <thead>
+                    <tr>
+                        <th></th><th class="team-th">Team</th><th class="stat-highlight">P</th><th>M</th><th>W</th><th>D</th><th>L</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="rank-col">1</td><td><div class="team-col-cell"><div class="team-logo-placeholder">F1</div><span class="team-name">Team F1</span><span class="points-indicator">0</span></div></td><td class="stat-highlight">0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td class="rank-col">2</td><td><div class="team-col-cell"><div class="team-logo-placeholder">F2</div><span class="team-name">Team F2</span><span class="points-indicator">0</span></div></td><td class="stat-highlight">0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td class="rank-col">3</td><td><div class="team-col-cell"><div class="team-logo-placeholder">F3</div><span class="team-name">Team F3</span><span class="points-indicator">0</span></div></td><td class="stat-highlight">0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td class="rank-col">4</td><td><div class="team-col-cell"><div class="team-logo-placeholder">F4</div><span class="team-name">Team F4</span><span class="points-indicator">0</span></div></td><td class="stat-highlight">0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ==================== GROUP G ==================== -->
+        <div class="group-container">
+            <h3 class="group-title">Group G</h3>
+            <div class="section-label">Standings</div>
+            <table class="standings-table">
+                <thead>
+                    <tr>
+                        <th></th><th class="team-th">Team</th><th class="stat-highlight">P</th><th>M</th><th>W</th><th>D</th><th>L</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="rank-col">1</td><td><div class="team-col-cell"><div class="team-logo-placeholder">G1</div><span class="team-name">Team G1</span><span class="points-indicator">0</span></div></td><td class="stat-highlight">0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td class="rank-col">2</td><td><div class="team-col-cell"><div class="team-logo-placeholder">G2</div><span class="team-name">Team G2</span><span class="points-indicator">0</span></div></td><td class="stat-highlight">0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td class="rank-col">3</td><td><div class="team-col-cell"><div class="team-logo-placeholder">G3</div><span class="team-name">Team G3</span><span class="points-indicator">0</span></div></td><td class="stat-highlight">0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td class="rank-col">4</td><td><div class="team-col-cell"><div class="team-logo-placeholder">G4</div><span class="team-name">Team G4</span><span class="points-indicator">0</span></div></td><td class="stat-highlight">0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ==================== GROUP H ==================== -->
+        <div class="group-container">
+            <h3 class="group-title">Group H</h3>
+            <div class="section-label">Standings</div>
+            <table class="standings-table">
+                <thead>
+                    <tr>
+                        <th></th><th class="team-th">Team</th><th class="stat-highlight">P</th><th>M</th><th>W</th><th>D</th><th>L</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="rank-col">1</td><td><div class="team-col-cell"><div class="team-logo-placeholder">H1</div><span class="team-name">Team H1</span><span class="points-indicator">0</span></div></td><td class="stat-highlight">0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td class="rank-col">2</td><td><div class="team-col-cell"><div class="team-logo-placeholder">H2</div><span class="team-name">Team H2</span><span class="points-indicator">0</span></div></td><td class="stat-highlight">0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td class="rank-col">3</td><td><div class="team-col-cell"><div class="team-logo-placeholder">H3</div><span class="team-name">Team H3</span><span class="points-indicator">0</span></div></td><td class="stat-highlight">0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td class="rank-col">4</td><td><div class="team-col-cell"><div class="team-logo-placeholder">H4</div><span class="team-name">Team H4</span><span class="points-indicator">0</span></div></td><td class="stat-highlight">0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <!-- Unified Master Navigation Footer Array -->
+    <div class="nav-container">
+    <a href="index.html" class="btn-control">Home Dashboard</a>
+    <a href="schedule.html" class="btn-control">Go to Schedule</a>
+    </div>
+
+</body>
+</html>

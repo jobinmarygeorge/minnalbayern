@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minnal Bayern Euro Cup 2026</title>
+    <style>
+        /* Base Reset & Mobile-First Typography */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 15px;
+            color: #2d3748;
+            background-color: #fcf8f8;
+            line-height: 1.4;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        .header-container {
+            border-bottom: 3px double #741212;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 18pt;
+            color: #741212;
+            margin: 0 0 5px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .subtitle {
+            font-size: 11pt;
+            color: #9b2c2c;
+            margin: 0;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        /* Mobile-friendly Responsive Grid Layout */
+        .grid-wrapper {
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .grid-row {
+            width: 100%;
+            margin-bottom: 0;
+        }
+
+        .grid-cell {
+            width: 100%;
+            display: block;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .group-box {
+            background-color: #ffffff;
+            border: 3px solid #741212;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(116, 18, 18, 0.06);
+            overflow: hidden;
+        }
+
+        .group-title {
+            background-color: #741212;
+            color: #ffffff;
+            text-align: center;
+            font-weight: bold;
+            font-size: 13pt;
+            padding: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .team-list-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .team-list-table th {
+            background-color: #fff5f5;
+            text-align: left;
+            font-size: 8.5pt;
+            color: #9b2c2c;
+            text-transform: uppercase;
+            padding: 10px 12px;
+            border-bottom: 2px solid #fed7d7;
+            font-weight: bold;
+        }
+
+        .team-list-table td {
+            padding: 12px;
+            border-bottom: 1px solid #fed7d7;
+            font-size: 11pt;
+            vertical-align: middle;
+        }
+
+        .team-list-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .team-list-table tr:nth-child(even) {
+            background-color: #fffafb;
+        }
+
+        .seed-tag {
+            font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+            font-weight: bold;
+            color: #e53e3e;
+            background-color: #fff5f5;
+            border: 1px solid #feb2b2;
+            border-radius: 4px;
+            padding: 4px 8px;
+            display: inline-block;
+            font-size: 10pt;
+            text-align: center;
+            min-width: 36px;
+        }
+
+        .team-name-text {
+            color: #2d3748;
+            font-weight: 600;
+            padding-left: 5px;
+        }
+
+        /* Unified Navigation Action Button Layout Rules */
+        .nav-container {
+            margin: 30px auto 15px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .btn-schedule, .btn-control {
+            display: block;
+            width: 100%;
+            background-color: #ffffff;
+            color: #741212;
+            border: 2px solid #741212;
+            border-radius: 6px;
+            padding: 14px 20px;
+            font-size: 11pt;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(116, 18, 18, 0.08);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .btn-schedule:hover, .btn-schedule:active,
+        .btn-control:hover, .btn-control:active {
+            background-color: #741212;
+            color: #ffffff;
+        }
+
+        .info-bar {
+            background-color: #741212;
+            color: #ffffff;
+            border-radius: 6px;
+            padding: 12px;
+            font-size: 9.5pt;
+            text-align: center;
+            font-weight: 500;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Desktop Adjustments: Horizontally aligned elements */
+        @media screen and (min-width: 768px) {
+            body {
+                padding: 30px;
+            }
+            
+            h1 {
+                font-size: 26pt;
+            }
+            
+            .subtitle {
+                font-size: 13pt;
+            }
+
+            .grid-row {
+                display: table;
+                table-layout: fixed;
+                margin-bottom: 25px;
+            }
+
+            .grid-cell {
+                display: table-cell;
+                width: 25%;
+                padding: 0 10px;
+                margin-bottom: 0;
+            }
+            
+            .group-title {
+                font-size: 14pt;
+                padding: 10px;
+            }
+
+            .nav-container {
+                flex-direction: row;
+                justify-content: center;
+                gap: 15px;
+                max-width: 100%;
+                margin: 40px auto 20px auto;
+            }
+
+            .btn-schedule, .btn-control {
+                display: inline-block;
+                width: auto;
+                padding: 12px 35px;
+                font-size: 10.5pt;
+            }
+            
+            .info-bar {
+                margin-top: 15px;
+                font-size: 10pt;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <h1>Minnal Bayern Euro Cup</h1>
+        <div class="subtitle">Official Group Matrix</div>
+    </div>
+
+    <div class="nav-container">
+        <a href="schedule.html" class="btn-schedule">View Match Schedule</a>
+        <a href="groups.html" class="btn-control">View Table Standings</a>
+    </div>
+
+    <div class="grid-wrapper">
+     <!-- Navigation Action Block Linked properly with identical styled target classes -->
+    
+        
+        <!-- ROW 1: GROUPS A, B, C, D -->
+        <div class="grid-row">
+            <div class="grid-cell">
+                <div class="group-box">
+                    <div class="group-title">Group A</div>
+                    <table class="team-list-table">
+                        <thead><tr><th style="width:30%">Seed</th><th style="width:70%">Team Designation</th></tr></thead>
+                        <tbody>
+                            <tr><td><span class="seed-tag">A1</span></td><td class="team-name-text">Team A1</td></tr>
+                            <tr><td><span class="seed-tag">A2</span></td><td class="team-name-text">Team A2</td></tr>
+                            <tr><td><span class="seed-tag">A3</span></td><td class="team-name-text">Team A3</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="grid-cell">
+                <div class="group-box">
+                    <div class="group-title">Group B</div>
+                    <table class="team-list-table">
+                        <thead><tr><th>Seed</th><th>Team Designation</th></tr></thead>
+                        <tbody>
+                            <tr><td><span class="seed-tag">B1</span></td><td class="team-name-text">Team B1</td></tr>
+                            <tr><td><span class="seed-tag">B2</span></td><td class="team-name-text">Team B2</td></tr>
+                            <tr><td><span class="seed-tag">B3</span></td><td class="team-name-text">Team B3</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="grid-cell">
+                <div class="group-box">
+                    <div class="group-title">Group C</div>
+                    <table class="team-list-table">
+                        <thead><tr><th>Seed</th><th>Team Designation</th></tr></thead>
+                        <tbody>
+                            <tr><td><span class="seed-tag">C1</span></td><td class="team-name-text">Team C1</td></tr>
+                            <tr><td><span class="seed-tag">C2</span></td><td class="team-name-text">Team C2</td></tr>
+                            <tr><td><span class="seed-tag">C3</span></td><td class="team-name-text">Team C3</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="grid-cell">
+                <div class="group-box">
+                    <div class="group-title">Group D</div>
+                    <table class="team-list-table">
+                        <thead><tr><th>Seed</th><th>Team Designation</th></tr></thead>
+                        <tbody>
+                            <tr><td><span class="seed-tag">D1</span></td><td class="team-name-text">Team D1</td></tr>
+                            <tr><td><span class="seed-tag">D2</span></td><td class="team-name-text">Team D2</td></tr>
+                            <tr><td><span class="seed-tag">D3</span></td><td class="team-name-text">Team D3</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ROW 2: GROUPS E, F, G, H -->
+        <div class="grid-row">
+            <div class="grid-cell">
+                <div class="group-box">
+                    <div class="group-title">Group E</div>
+                    <table class="team-list-table">
+                        <thead><tr><th style="width:30%">Seed</th><th style="width:70%">Team Designation</th></tr></thead>
+                        <tbody>
+                            <tr><td><span class="seed-tag">E1</span></td><td class="team-name-text">Team E1</td></tr>
+                            <tr><td><span class="seed-tag">E2</span></td><td class="team-name-text">Team E2</td></tr>
+                            <tr><td><span class="seed-tag">E3</span></td><td class="team-name-text">Team E3</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="grid-cell">
+                <div class="group-box">
+                    <div class="group-title">Group F</div>
+                    <table class="team-list-table">
+                        <thead><tr><th>Seed</th><th>Team Designation</th></tr></thead>
+                        <tbody>
+                            <tr><td><span class="seed-tag">F1</span></td><td class="team-name-text">Team F1</td></tr>
+                            <tr><td><span class="seed-tag">F2</span></td><td class="team-name-text">Team F2</td></tr>
+                            <tr><td><span class="seed-tag">F3</span></td><td class="team-name-text">Team F3</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="grid-cell">
+                <div class="group-box">
+                    <div class="group-title">Group G</div>
+                    <table class="team-list-table">
+                        <thead><tr><th>Seed</th><th>Team Designation</th></tr></thead>
+                        <tbody>
+                            <tr><td><span class="seed-tag">G1</span></td><td class="team-name-text">Team G1</td></tr>
+                            <tr><td><span class="seed-tag">G2</span></td><td class="team-name-text">Team G2</td></tr>
+                            <tr><td><span class="seed-tag">G3</span></td><td class="team-name-text">Team G3</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="grid-cell">
+                <div class="group-box">
+                    <div class="group-title">Group H</div>
+                    <table class="team-list-table">
+                        <thead><tr><th>Seed</th><th>Team Designation</th></tr></thead>
+                        <tbody>
+                            <tr><td><span class="seed-tag">H1</span></td><td class="team-name-text">Team H1</td></tr>
+                            <tr><td><span class="seed-tag">H2</span></td><td class="team-name-text">Team H2</td></tr>
+                            <tr><td><span class="seed-tag">H3</span></td><td class="team-name-text">Team H3</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Navigation Action Block Linked properly with identical styled target classes -->
+    <div class="nav-container">
+        <a href="schedule.html" class="btn-schedule">View Match Schedule →</a>
+        <a href="groups.html" class="btn-control">View Table Standings →</a>
+    </div>
+
+</body>
+</html>
